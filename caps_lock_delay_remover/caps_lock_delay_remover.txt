@@ -1,0 +1,23 @@
+tell application "System Preferences"
+    activate
+    set current pane to pane "com.apple.preference.keyboard"
+end tell
+
+tell application "System Events"
+    tell application process "System Preferences"
+        get properties
+        --turn the caps lock off
+        click button "Modifier Keys…" of tab group of window "Keyboard"
+        click menu item -1 of menu of pop up button of window "Keyboard"
+        click button "OK" of sheet of window "Keyboard"
+        --turn the caps lock back on
+        click button "Modifier Keys…" of tab group of window "Keyboard"
+        tell sheet of window "Keyboard"
+            click pop up button 4
+            click menu item 1 of menu 1 of pop up button 4
+            click button "OK"
+        end tell
+    end tell
+
+    tell application "System Preferences" to quit
+end tell
